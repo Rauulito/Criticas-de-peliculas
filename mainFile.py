@@ -17,15 +17,19 @@
 #-----------------------------------------------------------------------------------------
 
 
+from array import array
 import pandas as pnd
 import JMPEstadisticas as jmp
 #from JMPEstadisticas import *
 import numpy as np
 
 #--- CREACION DE UN DATAFRAME ----
-observaciones = pnd.DataFrame({'NOTAS':np.array([3,19,10,15,14,12,9,8,11,12,11,12,13,11,14,16])})
+observaciones = pnd.DataFrame({'Opinion':np.array([5,4,3,2,1,0]),
+                                'Cantidad de Votantes':np.array([40,99,145,133,96,40])
+                                })
+
 
 #--- ANALISIS DE UNA CARACTERISTICA ---
-stats = jmp.JMPEstadisticas(observaciones['NOTAS'])####no entiendo esta sentencia
+stats = jmp.JMPEstadisticas(observaciones['Opinion', 'Cantidad de Votantes'])####no entiendo esta sentencia--> preguntarle
 #stats = JMPEstadisticas(observaciones)
 stats.analisisCaracteristica()
