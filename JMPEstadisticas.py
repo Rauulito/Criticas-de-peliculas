@@ -29,7 +29,6 @@ class JMPEstadisticas():
 
     def __init__(self,caracteristica):
         self.caracteristica = caracteristica
-        print("Hola")
 
 
     def calculoMediaAritmetica(self):
@@ -47,7 +46,7 @@ class JMPEstadisticas():
     def calculoMediana(self):
         mediana = 0
         caracteristica = self.caracteristica.sort_values()
-        caracteristica = caracteristica.reset_index(drop=True) # el drop no deberia venir como por defecto???
+        caracteristica = caracteristica.reset_index(drop=True) # el drop no deberia venir como por defecto???--> No, es necesario cambiarlo a True
         n = self.caracteristica.count()
         par = False
         if (n % 2 == 0):
@@ -66,10 +65,10 @@ class JMPEstadisticas():
             rangoPython = rango - 1
             mediana = caracteristica[rangoPython]
 
-        return [mediana, rango]
+        return ([mediana, rango])
 
     def calculoModa(self):
-        moda = Counter.most_common(self.caracteristica)  # se encuentra el mas comun
+        moda = Counter.most_common(self.caracteristica)  # El metodo most_common es necesario para encontrar el mas comun
         return moda
 
     def calculoVarianzaDesviacionTipica(self):
@@ -78,17 +77,17 @@ class JMPEstadisticas():
         varianza = 0
         c3 = 0
         for valorObservacion in self.caracteristica:
-            x = valorObservacion # por qué se hace estas asignaciones si lueego no  las utiliza
+            x = valorObservacion
             moy = mediaAritmetica
             c1 = valorObservacion - mediaAritmetica
             c2 = c1 * c1
             c3 = c3 + c2
 
-        varianza = c3 / (n - 1) #esto tendria sentido en los indices al contar el 0 pero el metodo count no cuenta el 0 como el primero sino q el primero es el primero
+        varianza = c3 / (n - 1) #esto tendria sentido en los indices al contar el 0 pero el metodo count no cuenta el 0 como el primero sino q el primero es el primero--> preguntarselo
 
         desviacionTipica = sqrt(varianza)
 
-        return ([varianza, desviacionTipica]) # por qué este return tiene parentesis y el del metodo calculo mediana no???
+        return ([varianza, desviacionTipica]) # por qué este return tiene parentesis y el del metodo calculo mediana no???---> parentesis añadidos
 
     def calculoDelosCuartiles(self,mediana,rangoMediana):
         n = self.caracteristica.count()
